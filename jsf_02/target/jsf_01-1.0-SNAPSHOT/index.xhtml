@@ -1,0 +1,40 @@
+<ui:composition
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui"
+    template="/templates/page-template.xhtml">
+
+    <ui:define name="title">Kalkulator Kredytowy</ui:define>
+
+    <ui:define name="pageContent">
+        <p:panel header="Formularz kredytowy" style="width:400px">
+            
+            <h:form id="creditForm">
+                <p:messages id="msg" autoUpdate="true"/>
+
+                <p:panelGrid columns="2" cellpadding="5">
+                    <p:outputLabel value="Kwota:" for="x"/>
+                    <p:inputText id="x" value="#{calcBB.x}" label="Kwota"/>
+
+                    <p:outputLabel value="Roczna stopa procentowa (%):" for="y"/>
+                    <p:inputText id="y" value="#{calcBB.y}" label="Stopa procentowa"/>
+
+                    <p:outputLabel value="Okres kredytu (miesiące):" for="z"/>
+                    <p:inputText id="z" value="#{calcBB.z}" label="Okres"/>
+                </p:panelGrid>
+
+                <br/>
+                <!-- Команда с обычным переходом -->
+                <p:commandButton value="Oblicz" action="#{calcBB.calc()}" update=":creditForm:msg"/>
+
+                <!-- AJAX-обновление сообщений -->
+                <p:commandButton value="Oblicz (AJAX)" action="#{calcBB.calc_AJAX()}" update=":creditForm:msg"/>
+
+                <br/>
+                <h:link value="Informacje" outcome="info" />
+            </h:form>
+        </p:panel>
+    </ui:define>
+
+</ui:composition>

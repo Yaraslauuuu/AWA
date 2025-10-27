@@ -1,0 +1,24 @@
+<ui:composition 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <title><ui:insert name="title">Domyślny tytuł</ui:insert></title>
+    </h:head>
+
+    <h:body>
+        <p:panel header="Kalkulator Kredytowy" styleClass="bottom-space">
+            Stała zawartość nagłówka
+        </p:panel>
+
+        <!-- miejsce na zawartość strony -->
+        <ui:insert name="pageContent"/>
+
+        <p:panel footer="Stopka strony">
+            To wstawiona zawartość stopki
+        </p:panel>
+    </h:body>
+
+</ui:composition>
