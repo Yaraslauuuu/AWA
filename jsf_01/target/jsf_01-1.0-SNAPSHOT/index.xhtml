@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+    <title>Kalkulator Kredytowy</title>
+</h:head>
+<h:body>
+    <h1>Kalkulator Kredytowy</h1>
+
+    <!-- Форма ввода для расчета кредита -->
+    <h:form id="creditForm">
+        <h:panelGrid columns="2" cellpadding="5">
+            <h:outputLabel value="Kwota kredytu:" for="x" />
+            <h:inputText id="x" value="#{calcBB.x}" />
+
+            <h:outputLabel value="Roczna stopa procentowa (%):" for="y" />
+            <h:inputText id="y" value="#{calcBB.y}" />
+
+            <h:outputLabel value="Okres kredytu (miesiące):" for="z" />
+            <h:inputText id="z" value="#{calcBB.z}" />
+        </h:panelGrid>
+
+        <br />
+        <h:messages id="msg" globalOnly="true" />
+
+        <h:commandButton value="Oblicz" action="#{calcBB.calc()}" />
+
+        <br /><br />
+
+        <h:commandButton value="Oblicz (AJAX)" action="#{calcBB.calc_AJAX()}">
+            <f:ajax execute="@form" render="msg" />
+        </h:commandButton>
+    </h:form>
+</h:body>
+</html>
