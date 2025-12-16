@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="jakarta.faces.facelets"
+    xmlns:h="jakarta.faces.html" xmlns:f="jakarta.faces.core">
+
+<ui:composition template="/templates/page-template.xhtml">
+
+    <ui:define name="pageContent">
+
+        <h:messages id="msg" />
+
+        <h:form>
+            <h:panelGrid columns="2" cellpadding="5" styleClass="bottom-space">
+
+                <h:outputLabel for="idx" value="#{txtCalc.valueX}:" />
+
+                <h:inputText id="idx" value="#{calcBB.x}" required="true"
+                    requiredMessage="X: #{txtCalcErr.calcParamRequired}"
+                    converterMessage="X: #{txtCalcErr.calcParamIncorrect}" />
+
+                <h:outputLabel for="idy" value="#{txtCalc.valueY}" />
+
+                <h:inputText id="idy" value="#{calcBB.y}" required="true"
+                    requiredMessage="Y: #{txtCalcErr.calcParamRequired}"
+                    converterMessage="Y: #{txtCalcErr.calcParamIncorrect}" />
+
+                <h:commandButton value="#{txtCalc.add}" action="#{calcBB.calc()}">
+                    <f:ajax execute="@form" render="msg wynik" />
+                </h:commandButton>
+
+            </h:panelGrid>
+        </h:form>
+
+        <h:panelGroup id="wynik" rendered="#{calcBB.result != null}">
+            <h:outputText value="Wynik: #{calcBB.result}" styleClass="bottom-space" />
+        </h:panelGroup>
+
+        <h:form>
+            <h:panelGrid columns="1" cellpadding="5" styleClass="bottom-space">
+                <h:commandButton value="Zapisz wynik w sesji" action="#{calcBB.zapiszWynikWSesji()}" />
+                <h:commandButton value="Pobierz wynik z sesji" action="#{calcBB.pobierzZSesji()}" />
+                <h:commandButton value="Ustaw ciasteczka" action="#{calcBB.ustawCiasteczka()}" />
+            </h:panelGrid>
+        </h:form>
+
+    </ui:define>
+
+</ui:composition>
+
+</html>
